@@ -24,3 +24,6 @@ services:
         isDirectory: false
         content: "server:\n  sources:\n    - path: /folder # corresponds to the folder mounted above in docker-compose\n      config:\n        defaultEnabled: true # add source for all users by default \nauth:\n  adminUsername: admin"
 
+        
+        -$HOME:/srv/users
+
