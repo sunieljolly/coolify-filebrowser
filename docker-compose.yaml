@@ -1,13 +1,16 @@
 services:
   filebrowser:
     image: 'gtstef/filebrowser'
-    environment:
+    container_name: filebrowser
+    restart: unless-stopped
+     environment:
+           - FB_ROOT=/srv/root                  # start Filebrowser at server root
       - FILEBROWSER_CONFIG
       - FILEBROWSER_ADMIN_PASSWORD
       #      FILEBROWSER_CONFIG: "./data/config.yaml" -> add to coolify environment variables.
 #      FILEBROWSER_ADMIN_PASSWORD: admin -> add to coolify environment variables.
+
     volumes:
-      - ./folder:/folder
-      - ./data:/home/filebrowser/data
-      - ./data/config.yaml:/home/filebrowser/data/config.yaml
-      - /:/srv/root
+      - /:/srv/root                        # entire host filesystem
+      - ./data:/database                   # Filebrowser stores its DB here
+ 
